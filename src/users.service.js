@@ -11,9 +11,17 @@ class UsersService {
     return rows[0];
   }
 
-  async getUserById(id) {
-    const { rows } = await db.query('SELECT * FROM users WHERE user_id = $1', [id]);
+  async editingUser(userData) {
+
+    try {
+    const { id, name, email } = userData;
+    const { rows } = await db.query(`UPDATE users
+                                    SET user_name='${name}', user_email='${email}'
+                                    where user_id='${id}'`);
     return rows[0];
+  }catch (error) {
+    console.error('Ошибка при редактировании пользователя:', error);
+  }
   }
 
   async getUsers() {

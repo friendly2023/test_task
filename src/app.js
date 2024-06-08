@@ -12,20 +12,29 @@ app.set('views', path.join(__dirname, 'views'));
 const usersController = new UsersController();
 
 
-app.get('/create-users', (req, res) => {
-    res.render('createusers');
-  }); 
-
-
 app.get('/', (req, res) => {
     res.render('main-page');
   });
 
 
-app.post('/users', async (req, res) => {
+app.get('/users/create', (req, res) => {
+    res.render('create-users');
+  });
+
+app.post('/users/create', async (req, res) => {
     await usersController.createUser(req, res);
   });
-  
+
+
+app.get('/users/editing', (req, res) => {
+    res.render('editing-user');
+});
+
+app.post('/users/editing', async (req, res) => {
+    await usersController.editingUser(req, res);
+});
+
+
 app.get('/users', async (req, res) => {
     await usersController.getUsers(req, res);
 });
