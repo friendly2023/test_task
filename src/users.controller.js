@@ -6,21 +6,22 @@ class UsersController {
   }
 
   async createUser(req, res) {
-    const { name, email } = req.body;
-    const newUser = await this.usersService.createUser({ name, email });
-    res.status(201).json(newUser);
-  }
+    try {
+      const { name, email } = req.body;
+      console.log('User data:', { name, email });
+      const usersCreate = await this.usersService.createUser(req.body);
+      res.render('success', { name }); // Отображаем страницу успешного создания пользователя
+    } catch (error) {
+      console.error('Error creating user:', error);
+      res.status(500).json({ message: 'Error creating user' });
+    }
+  }  
 
   async getUsers(req, res) {
     const users = await this.usersService.getUsers();
     res.status(200).json(users);
   }
 
-  async getUser(req, res) {
-    const { id } = req.params;
-    const user = await this.usersService.getUserById(id);
-    res.status(200).json(user);
-  }
 }
 
 module.exports = UsersController;
