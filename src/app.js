@@ -18,8 +18,8 @@ app.get('/create-users', (req, res) => {
 
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the Users API!');
-});
+    res.render('main-page');
+  });
 
 
 app.post('/users', async (req, res) => {
