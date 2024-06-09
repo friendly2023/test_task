@@ -1,6 +1,5 @@
 const express = require('express');
 const UsersController = require('./users.controller');
-const UsersService = require('./users.service');
 const path = require('path');
 
 const app = express();
@@ -11,7 +10,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 const usersController = new UsersController();
-const usersService = new UsersService();
 
 
 app.get('/', (req, res) => {
@@ -38,9 +36,7 @@ app.post('/users/editing', async (req, res) => {
 
 
 app.get('/users', async (req, res) => {
-    // await usersController.getUsers(req, res);
     await usersController.getUsers(req, res);
-    // res.render('get-users', { users });
 });
 
 
