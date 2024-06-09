@@ -8,19 +8,20 @@ class UsersService {
       'INSERT INTO users (user_name, user_email) VALUES ($1, $2) RETURNING *',
       [name, email]
     );
+    return rows[0].user_id;
   }
 
   async check(userData) {
     const { id, name, email } = userData;
     const result = await db.query(
       `SELECT * FROM users WHERE user_id ='${id}';`);
-return result.rows.length
+    return result.rows.length
   }
 
   async editingUser(userData) {
-      const { id, name, email } = userData;
+    const { id, name, email } = userData;
 
-      const { rows } = await db.query(`UPDATE users
+    const { rows } = await db.query(`UPDATE users
                                       SET user_name='${name}', user_email='${email}'
                                       where user_id='${id}';`);
   }
@@ -36,11 +37,11 @@ module.exports = UsersService;
 
 // const newUserData = {
 //   name: 'John Doe',
-//   email: 'doe@ex75ple.com'
+//   email: 'doe@ex8875ple.com'
 // }
 
 // let ert = new UsersService()
-// ert.getUserById(10)
+// ert.createUser(newUserData)
 //     .then((result) => {
 //         console.log(result);
 //     })
