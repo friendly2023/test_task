@@ -50,7 +50,7 @@
       name: document.getElementById('name').value,
       email: document.getElementById('email').value,
     };
-  
+
     try {
       const response = await fetch('/users/editing', {
         method: 'POST',
@@ -62,6 +62,7 @@
   
       if (response.ok) {
         window.location.href = '/users/editing';
+        console.log(userData)
       } else {
         alert('Error creating user. Please try again.');
       }
