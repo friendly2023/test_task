@@ -33,7 +33,8 @@ class UsersController {
 
   async getUsers(req, res) {
     const users = await this.usersService.getUsers();
-    res.status(200).json(users);
+    res.render('get-users', { users });
+    // res.status(200).json(users);
   }
 
 }

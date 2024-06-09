@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Management</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f1f1f1;
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 40px;
+      }
+
+      .users-table {
+        margin-top: 40px;
+        width: 80%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .users-table th,
+      .users-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .users-table th {
+        background-color: #4CAF50;
+        color: white;
+      }
+
+      .buttons {
+        margin-top: 20px;
+      }
+
+      .buttons button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Пользователи</h1>
+    <div class="buttons">
+      <button type="button" onclick="window.location.href='/users/create'">Создать пользователя</button>
+      <button type="button" onclick="window.location.href='/users/editing'">Изменить пользователя</button>
+    </div>
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Имя</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.user_id %></td>
+          <td><%= user.user_name %></td>
+          <td><%= user.user_email %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>

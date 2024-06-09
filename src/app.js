@@ -38,7 +38,9 @@ app.post('/users/editing', async (req, res) => {
 
 
 app.get('/users', async (req, res) => {
+    // await usersController.getUsers(req, res);
     await usersController.getUsers(req, res);
+    // res.render('get-users', { users });
 });
 
 

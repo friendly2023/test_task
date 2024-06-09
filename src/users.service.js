@@ -26,7 +26,7 @@ return result.rows.length
   }
 
   async getUsers() {
-    const { rows } = await db.query('SELECT * FROM users;');
+    const { rows } = await db.query('SELECT * FROM users ORDER BY user_id;');
     return rows;
   }
 }
