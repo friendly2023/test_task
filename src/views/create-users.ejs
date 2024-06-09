@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create User</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      form label, form input {
+        margin: 10px 0;
+      }
+
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Для создания нового пользователя заполните поля:</h1>
+    <form action="/users/create" method="POST">
+      <label for="name">Имя пользователя:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email пользователя:</label>
+      <input type="email" id="email" name="email" required>
+      <br>
+      <button type="submit">Создать пользователя</button>
+      <br>
+      <button type="button" onclick="window.location.href='/'">На главную</button>
+    </form>
+  </body>
+</html>
+
+
+<script>
+document.getElementById('createUserForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const userData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+  };
+
+  try {
+    const response = await fetch('/users/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    });
+
+    if (response.ok) {
+      window.location.href = '/users/create';
+    } else {
+      alert('Error creating user. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred. Please try again later.');
+  }
+});
+
+</script>
+
